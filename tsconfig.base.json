@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mycom/markdown": ["libs/markdown/src/index.ts"],
+      "@mycom/shared/mdx-elements": ["libs/shared/mdx-elements/src/index.ts"],
+      "@mycom/shared/ui": ["libs/shared/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
