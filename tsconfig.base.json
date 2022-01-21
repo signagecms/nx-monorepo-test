@@ -17,6 +17,7 @@
     "paths": {
       "@mycom/markdown": ["libs/markdown/src/index.ts"],
       "@mycom/shared/mdx-elements": ["libs/shared/mdx-elements/src/index.ts"],
+      "@mycom/shared/mdx-elements/*": ["libs/shared/mdx-elements/src/lib/*"],
       "@mycom/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },

@@ -1,10 +1,11 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { join } from 'path';
 import { readdirSync } from 'fs';
 import { MDXRemote } from 'next-mdx-remote';
+import dynamic from 'next/dynamic';
 import { getParsedFileContentBySlug, renderMarkdown } from '@mycom/markdown';
-import { Youtube, CustomLink } from '@mycom/shared/mdx-elements';
+// import { Youtube, CustomLink } from '@mycom/shared/mdx-elements';
 
 
 /* eslint-disable-next-line */
@@ -13,14 +14,15 @@ export interface ArticleProps extends ParsedUrlQuery {
 }
 
 const mdxElements = {
-    Youtube,
-    a: CustomLink
+    Youtube: dynamic(async () => {
+      return await import('@mycom/shared/mdx-elements/youtube/youtube')}),
+    // a: CustomLink
 }
 
 // POSTS_DIR_PATH is the absolute path to the _articles directory
 const POSTS_DIR_PATH = join(process.cwd(), '_articles');
 
-function Article({ frontMatter, html }) {
+function Article({ frontMatter, html }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className="m-6">
       <article className="prose prose-lg">
@@ -28,14 +30,14 @@ function Article({ frontMatter, html }) {
         <div className="mb-4">by {frontMatter.author.name}</div>
       </article>
       <hr />
-      <MDXRemote {...html} components={mdxElements}/>
+      <MDXRemote {...html} components={mdxElements} />
     </div>
   );
 }
 
 export default Article;
 
-export const getStaticProps: GetStaticProps<ArticleProps> = async ({ params }: { params: ArticleProps }) => {
+export const getStaticProps = async ({ params }: { params: ArticleProps }) => {
   // 1. parse the content of the markdown and seperate it into frontmatter and content
   const markdownArticle = getParsedFileContentBySlug(params.slug, POSTS_DIR_PATH);
 

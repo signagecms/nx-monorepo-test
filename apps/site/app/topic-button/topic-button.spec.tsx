@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import SharedUi from './shared-ui';
+import TopicButton from './topic-button';
 
-describe('SharedUi', () => {
+describe('TopicButton', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<SharedUi />);
+    const { baseElement } = render(<TopicButton />);
     expect(baseElement).toBeTruthy();
   });
 });
