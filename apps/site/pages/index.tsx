@@ -1,5 +1,4 @@
 import styles from './index.module.css';
-import { TopicButton } from '@mycom/shared/ui';
 
 export function Index() {
   return (
@@ -25,7 +24,6 @@ export function Index() {
             </a>
           </div>
         </div>
-        <TopicButton topicName="React Button" />
       </div>
     </div>
   );
