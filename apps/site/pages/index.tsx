@@ -25,7 +25,7 @@ export function Index() {
             </a>
           </div>
         </div>
-        <TopicButton topicName="React" />
+        <TopicButton topicName="React Button" />
       </div>
     </div>
   );
